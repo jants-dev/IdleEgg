@@ -18,7 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 @EnableSQLMapPlugin(value = "com/acxy/idleegg/mapper")
 public class IdleEggApplication {
 
-    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public static void main(String[] args) {
         JTomcat.run(IdleEggApplication.class, 80, "/api");
     }
 }
