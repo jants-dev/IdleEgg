@@ -2,18 +2,13 @@ package com.acxy.idleegg.controller;
 
 import cn.jants.common.annotation.action.*;
 import cn.jants.common.annotation.service.Autowired;
-import cn.jants.common.annotation.service.Tx;
 import cn.jants.common.bean.JsonMap;
-import cn.jants.common.bean.Page;
-import cn.jants.common.exception.TipException;
-import cn.jants.plugin.sqlmap.Paging;
+import cn.jants.common.bean.PageConditions;
 import cn.jants.restful.render.Json;
+import com.acxy.idleegg.business.MemberBusiness;
 import com.acxy.idleegg.entity.Member;
-import com.acxy.idleegg.mapper.MemberMapper;
 
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * 会员 控制器
@@ -25,7 +20,7 @@ import java.util.UUID;
 public class MemberController {
 
     @Autowired
-    private MemberMapper memberMapper;
+    private MemberBusiness memberBusiness;
 
     /**
      * 查询会员分页
@@ -36,10 +31,8 @@ public class MemberController {
      */
     @GET("/page")
     public Map page(@Param Integer index, @Param Integer size) {
-        Paging.startPage(index, size);
-        List<Member> members = memberMapper.selectList();
-        Page page = new Page(members);
-        return Json.success(page);
+        PageConditions pageConditions = new PageConditions(index, size);
+        return Json.success(memberBusiness.queryMemberPage(pageConditions));
     }
 
     /**
@@ -50,7 +43,7 @@ public class MemberController {
      */
     @GET("/query/{openId}")
     public Map query(@PathVariable String openId) {
-        Member member = memberMapper.selectByOpenId(openId);
+        Member member = memberBusiness.queryMember(openId);
         //其他扩展属性也就是所谓的DTO
         JsonMap jsonMap = new JsonMap(member);
         jsonMap.put("pos", "java");
@@ -66,8 +59,7 @@ public class MemberController {
      */
     @POST("/add")
     public Map add(Member member) {
-        member.setOpenId(UUID.randomUUID().toString());
-        Long returnKey = memberMapper.insert(member);
+        Long returnKey = memberBusiness.saveMember(member);
         return Json.success(returnKey);
     }
 
@@ -82,7 +74,7 @@ public class MemberController {
     @PUT("/update/{openId}")
     public Map update(@PathVariable String openId, Member member) {
         member.setOpenId(openId);
-        Integer count = memberMapper.updateByOpenId(member);
+        Integer count = memberBusiness.updateMember(member);
         return Json.success(count);
     }
 
@@ -95,20 +87,7 @@ public class MemberController {
      */
     @DELETE("/delete/{openId}")
     public Map delete(@PathVariable String openId) {
-        Integer count = memberMapper.deleteByOpenId(openId);
+        Integer count = memberBusiness.deleteMember(openId);
         return Json.success(count);
-    }
-
-    /**
-     * 测试事务回滚机制, 数据库格式InnoDB
-     *
-     * @param openId
-     * @return
-     */
-    @DELETE("/tx/{openId}")
-    @Tx
-    public Map tx(@PathVariable String openId) {
-        Integer count = memberMapper.deleteByOpenId(openId);
-        throw new TipException("测试事务回滚机制...");
     }
 }
