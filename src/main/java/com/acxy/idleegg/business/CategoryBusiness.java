@@ -29,7 +29,51 @@ public class CategoryBusiness {
      */
     public Page queryCategoryPage(PageConditions pageConditions) {
         Paging.startPage(pageConditions.getPageNum(), pageConditions.getPageSize());
-        List<Category> categories = categoryMapper.selectList();
+        List<Category> categories = categoryMapper.selectList(pageConditions.getConditions());
         return new Page(categories);
     }
+
+    /**
+     * 查询栏目信息
+     *
+     * @param catId 栏目Id
+     * @return
+     */
+    public Category queryCategory(Long catId) {
+        Category category = categoryMapper.selectById(catId);
+        return category;
+    }
+
+    /**
+     * 保存栏目
+     *
+     * @param category 栏目
+     * @return
+     */
+    public Long saveCategory(Category category) {
+        Long returnKey = categoryMapper.insert(category);
+        return returnKey;
+    }
+
+    /**
+     * 修改栏目信息
+     *
+     * @param category 栏目
+     */
+    public Integer updateCategory(Category category) {
+        Integer result = categoryMapper.updateById(category);
+        return result;
+    }
+
+
+    /**
+     * 删除栏目信息
+     *
+     * @param catId 栏目Id
+     */
+    public Integer deleteCategory(Long catId) {
+        Integer result = categoryMapper.deleteById(catId);
+        return result;
+    }
+
 }

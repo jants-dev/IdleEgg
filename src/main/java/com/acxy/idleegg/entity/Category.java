@@ -7,7 +7,7 @@ import java.io.Serializable;
  * 栏目分类(category)
  *
  * @author liushun
- * @version 1.0.0 2018-02-05
+ * @version 1.0.0 2018-02-06
  */
 public class Category implements Serializable {
 
@@ -22,19 +22,19 @@ public class Category implements Serializable {
     private String catName;
 
     /**
-     * 0/外链1/内置/2/单页
+     * 父菜单
      */
-    private Integer type;
+    private Long parentId;
 
     /**
-     * 样式
+     * 层级
      */
-    private String style;
+    private Integer level;
 
     /**
-     * 分类目录
+     * 栏目图
      */
-    private String catDir;
+    private String icon;
 
     /**
      * 连接URL
@@ -42,79 +42,24 @@ public class Category implements Serializable {
     private String linkUrl;
 
     /**
-     * 级别
-     */
-    private Integer level;
-
-    /**
-     * 父类
-     */
-    private Long parentId;
-
-    /**
-     * 0/隐藏1/显示
-     */
-    private Integer nav;
-
-    /**
      * 排序
      */
     private Integer sort;
 
     /**
-     * 模板
-     */
-    private String template;
-
-    /**
      * 栏目统计
      */
-    private Long count;
-
-    /**
-     * 内容模型
-     */
-    private String module;
-
-    /**
-     * SEO标题
-     */
-    private String seoTitle;
-
-    /**
-     * SEO关键词
-     */
-    private String seoKeywords;
+    private Long hits;
 
     /**
      * SEO描述
      */
-    private String seoDescription;
+    private String description;
 
     /**
-     * 栏目图
+     * 状态; 0/隐藏 1显示
      */
-    private String thumb;
-
-    /**
-     * 简介
-     */
-    private String introduce;
-
-    /**
-     * 区域
-     */
-    private Integer areaid;
-
-    /**
-     * IP
-     */
-    private String ip;
-
-    /**
-     * 状态
-     */
-    private Integer status;
+    private Integer isView;
 
     public Category() {
     }
@@ -141,39 +86,12 @@ public class Category implements Serializable {
     }
 
 
-    public Integer getType() {
-        return type;
+    public Long getParentId() {
+        return parentId;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-
-    public String getStyle() {
-        return style;
-    }
-
-    public void setStyle(String style) {
-        this.style = style;
-    }
-
-
-    public String getCatDir() {
-        return catDir;
-    }
-
-    public void setCatDir(String catDir) {
-        this.catDir = catDir;
-    }
-
-
-    public String getLinkUrl() {
-        return linkUrl;
-    }
-
-    public void setLinkUrl(String linkUrl) {
-        this.linkUrl = linkUrl;
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
 
@@ -186,21 +104,21 @@ public class Category implements Serializable {
     }
 
 
-    public Long getParentId() {
-        return parentId;
+    public String getIcon() {
+        return icon;
     }
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
 
-    public Integer getNav() {
-        return nav;
+    public String getLinkUrl() {
+        return linkUrl;
     }
 
-    public void setNav(Integer nav) {
-        this.nav = nav;
+    public void setLinkUrl(String linkUrl) {
+        this.linkUrl = linkUrl;
     }
 
 
@@ -213,102 +131,30 @@ public class Category implements Serializable {
     }
 
 
-    public String getTemplate() {
-        return template;
+    public Long getHits() {
+        return hits;
     }
 
-    public void setTemplate(String template) {
-        this.template = template;
-    }
-
-
-    public Long getCount() {
-        return count;
-    }
-
-    public void setCount(Long count) {
-        this.count = count;
+    public void setHits(Long hits) {
+        this.hits = hits;
     }
 
 
-    public String getModule() {
-        return module;
+    public String getDescription() {
+        return description;
     }
 
-    public void setModule(String module) {
-        this.module = module;
-    }
-
-
-    public String getSeoTitle() {
-        return seoTitle;
-    }
-
-    public void setSeoTitle(String seoTitle) {
-        this.seoTitle = seoTitle;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 
-    public String getSeoKeywords() {
-        return seoKeywords;
+    public Integer getIsView() {
+        return isView;
     }
 
-    public void setSeoKeywords(String seoKeywords) {
-        this.seoKeywords = seoKeywords;
-    }
-
-
-    public String getSeoDescription() {
-        return seoDescription;
-    }
-
-    public void setSeoDescription(String seoDescription) {
-        this.seoDescription = seoDescription;
-    }
-
-
-    public String getThumb() {
-        return thumb;
-    }
-
-    public void setThumb(String thumb) {
-        this.thumb = thumb;
-    }
-
-
-    public String getIntroduce() {
-        return introduce;
-    }
-
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce;
-    }
-
-
-    public Integer getAreaid() {
-        return areaid;
-    }
-
-    public void setAreaid(Integer areaid) {
-        this.areaid = areaid;
-    }
-
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setIsView(Integer isView) {
+        this.isView = isView;
     }
 
 

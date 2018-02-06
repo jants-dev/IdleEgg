@@ -1,61 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "ANTS" "http://doc.jants.cn/dtd/ants-mapper.dtd" >
+<!--<!DOCTYPE mapper PUBLIC "ANTS" "http://doc.jants.cn/dtd/ants-mapper.dtd" >-->
 <!-- 栏目分类-->
 <mapper namespace="CategoryMapper" >
 
-    <resultType id="category" type="com.acxy.idleegg.entity.Category"/>
-
+    <resultType id="category" type="com.acxy.idleegg.entity.Category" />
+   
     <!--数据和实体的对应映射-->
     <sql id="Base_Column_List" >
         cat_id as catId, 
         cat_name as catName, 
-        type as type, 
-        style as style, 
-        cat_dir as catDir, 
-        link_url as linkUrl, 
-        level as level, 
         parent_id as parentId, 
-        nav as nav, 
+        level as level, 
+        icon as icon, 
+        link_url as linkUrl, 
         sort as sort, 
-        template as template, 
-        count as count, 
-        module as module, 
-        seo_title as seoTitle, 
-        seo_keywords as seoKeywords, 
-        seo_description as seoDescription, 
-        thumb as thumb, 
-        introduce as introduce, 
-        areaid as areaid, 
-        ip as ip, 
-        status as status
+        hits as hits, 
+        description as description, 
+        is_view as isView
     </sql>
 
-    <!-- //TODO 多条件查询,自己扩充条件 -->
     <select id="selectList" resultType="category">
-        select <include refid="Base_Column_List"/>
-        from category
-        <where>
-            <if test="keywords != null">
-                cat_name like concat(concat("%",#{keywords}),"%")
-            </if>
-        </where>
+        select <include refid="Base_Column_List"/> from category
     </select>
 
-    <!-- //TODO 多条件删除,自己扩充条件-->
-    <delete id="delete">
-
-    </delete>
-
-    <!-- //TODO 多条件更新,自己扩充条件-->
-    <update id="update">
-
-    </update>
-
-    <!-- //TODO selectCount 多条件数据统计-->
 
     <!-- 根据主键ID查询一条记录-->
-    <select id="selectById">
-        select <include refid="Base_Column_List"/> from category where id = #{id}
+    <select id="selectById" resultType="category">
+        select <include refid="Base_Column_List"/> from category where cat_id = #{catId}
     </select>
 
     <!-- 插入不为空的字段 -->
@@ -68,62 +39,29 @@
             <if test="catName != null" >
                 cat_name,
             </if>
-            <if test="type != null" >
-                type,
-            </if>
-            <if test="style != null" >
-                style,
-            </if>
-            <if test="catDir != null" >
-                cat_dir,
-            </if>
-            <if test="linkUrl != null" >
-                link_url,
+            <if test="parentId != null" >
+                parent_id,
             </if>
             <if test="level != null" >
                 level,
             </if>
-            <if test="parentId != null" >
-                parent_id,
+            <if test="icon != null" >
+                icon,
             </if>
-            <if test="nav != null" >
-                nav,
+            <if test="linkUrl != null" >
+                link_url,
             </if>
             <if test="sort != null" >
                 sort,
             </if>
-            <if test="template != null" >
-                template,
+            <if test="hits != null" >
+                hits,
             </if>
-            <if test="count != null" >
-                count,
+            <if test="description != null" >
+                description,
             </if>
-            <if test="module != null" >
-                module,
-            </if>
-            <if test="seoTitle != null" >
-                seo_title,
-            </if>
-            <if test="seoKeywords != null" >
-                seo_keywords,
-            </if>
-            <if test="seoDescription != null" >
-                seo_description,
-            </if>
-            <if test="thumb != null" >
-                thumb,
-            </if>
-            <if test="introduce != null" >
-                introduce,
-            </if>
-            <if test="areaid != null" >
-                areaid,
-            </if>
-            <if test="ip != null" >
-                ip,
-            </if>
-            <if test="status != null" >
-                status,
+            <if test="isView != null" >
+                is_view,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -133,69 +71,36 @@
             <if test="catName != null" >
                 #{catName},
             </if>
-            <if test="type != null" >
-                #{type},
-            </if>
-            <if test="style != null" >
-                #{style},
-            </if>
-            <if test="catDir != null" >
-                #{catDir},
-            </if>
-            <if test="linkUrl != null" >
-                #{linkUrl},
+            <if test="parentId != null" >
+                #{parentId},
             </if>
             <if test="level != null" >
                 #{level},
             </if>
-            <if test="parentId != null" >
-                #{parentId},
+            <if test="icon != null" >
+                #{icon},
             </if>
-            <if test="nav != null" >
-                #{nav},
+            <if test="linkUrl != null" >
+                #{linkUrl},
             </if>
             <if test="sort != null" >
                 #{sort},
             </if>
-            <if test="template != null" >
-                #{template},
+            <if test="hits != null" >
+                #{hits},
             </if>
-            <if test="count != null" >
-                #{count},
+            <if test="description != null" >
+                #{description},
             </if>
-            <if test="module != null" >
-                #{module},
-            </if>
-            <if test="seoTitle != null" >
-                #{seoTitle},
-            </if>
-            <if test="seoKeywords != null" >
-                #{seoKeywords},
-            </if>
-            <if test="seoDescription != null" >
-                #{seoDescription},
-            </if>
-            <if test="thumb != null" >
-                #{thumb},
-            </if>
-            <if test="introduce != null" >
-                #{introduce},
-            </if>
-            <if test="areaid != null" >
-                #{areaid},
-            </if>
-            <if test="ip != null" >
-                #{ip},
-            </if>
-            <if test="status != null" >
-                #{status},
+            <if test="isView != null" >
+                #{isView},
             </if>
         </trim>
     </insert>
 
     <!-- 根据主键Id删除数据-->
     <delete id="deleteById">
-        delete from category where id = #{id}
+        delete from category where cat_id = #{catId}
     </delete>
 
     <!-- 据主键Id修改字段不为空的数据 -->
@@ -208,64 +113,31 @@
             <if test="catName != null" >
             cat_name = #{catName},
             </if>
-            <if test="type != null" >
-            type = #{type},
-            </if>
-            <if test="style != null" >
-            style = #{style},
-            </if>
-            <if test="catDir != null" >
-            cat_dir = #{catDir},
-            </if>
-            <if test="linkUrl != null" >
-            link_url = #{linkUrl},
+            <if test="parentId != null" >
+            parent_id = #{parentId},
             </if>
             <if test="level != null" >
             level = #{level},
             </if>
-            <if test="parentId != null" >
-            parent_id = #{parentId},
+            <if test="icon != null" >
+            icon = #{icon},
             </if>
-            <if test="nav != null" >
-            nav = #{nav},
+            <if test="linkUrl != null" >
+            link_url = #{linkUrl},
             </if>
             <if test="sort != null" >
             sort = #{sort},
             </if>
-            <if test="template != null" >
-            template = #{template},
+            <if test="hits != null" >
+            hits = #{hits},
             </if>
-            <if test="count != null" >
-            count = #{count},
+            <if test="description != null" >
+            description = #{description},
             </if>
-            <if test="module != null" >
-            module = #{module},
-            </if>
-            <if test="seoTitle != null" >
-            seo_title = #{seoTitle},
-            </if>
-            <if test="seoKeywords != null" >
-            seo_keywords = #{seoKeywords},
-            </if>
-            <if test="seoDescription != null" >
-            seo_description = #{seoDescription},
-            </if>
-            <if test="thumb != null" >
-            thumb = #{thumb},
-            </if>
-            <if test="introduce != null" >
-            introduce = #{introduce},
-            </if>
-            <if test="areaid != null" >
-            areaid = #{areaid},
-            </if>
-            <if test="ip != null" >
-            ip = #{ip},
-            </if>
-            <if test="status != null" >
-            status = #{status},
+            <if test="isView != null" >
+            is_view = #{isView},
             </if>
         </set>
-        where id = #{id}
+        where cat_id = #{catId}
     </update>
 </mapper>

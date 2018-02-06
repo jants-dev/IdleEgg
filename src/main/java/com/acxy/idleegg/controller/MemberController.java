@@ -2,7 +2,6 @@ package com.acxy.idleegg.controller;
 
 import cn.jants.common.annotation.action.*;
 import cn.jants.common.annotation.service.Autowired;
-import cn.jants.common.bean.JsonMap;
 import cn.jants.common.bean.PageConditions;
 import cn.jants.restful.render.Json;
 import com.acxy.idleegg.business.MemberBusiness;
@@ -44,9 +43,6 @@ public class MemberController {
     @GET("/query/{openId}")
     public Map query(@PathVariable String openId) {
         Member member = memberBusiness.queryMember(openId);
-        //其他扩展属性也就是所谓的DTO
-        JsonMap jsonMap = new JsonMap(member);
-        jsonMap.put("pos", "java");
         return Json.success(member);
     }
 
