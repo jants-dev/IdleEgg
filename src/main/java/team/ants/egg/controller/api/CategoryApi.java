@@ -2,10 +2,10 @@ package team.ants.egg.controller.api;
 
 import cn.jants.common.annotation.action.*;
 import cn.jants.common.annotation.service.Autowired;
-import cn.jants.common.bean.PageConditions;
+import cn.jants.common.bean.JsonMap;
 import cn.jants.restful.render.Json;
-import team.ants.egg.service.business.CategoryBusiness;
 import team.ants.egg.entity.Category;
+import team.ants.egg.service.business.CategoryBusiness;
 
 import java.util.Map;
 
@@ -22,17 +22,27 @@ public class CategoryApi {
     private CategoryBusiness categoryBusiness;
 
     /**
-     * 查询栏目分页
+     * 查询栏目列表
      *
-     * @param index 当前页数
-     * @param size  每页大小
+     * @return
+     * @Param pid 父菜单Id
+     */
+    @GET("/list")
+    public Map list(Long pid) {
+        JsonMap params = JsonMap.newJsonMap();
+        params.put("parentId", pid);
+        return Json.success(categoryBusiness.queryCategoryList(params));
+    }
+
+    /**
+     * 获取菜单数
+     *
+     * @param pid
      * @return
      */
-    @GET("/page")
-    public Map page(@Param Integer index, @Param Integer size, String keywords) {
-        PageConditions pageConditions = new PageConditions(index, size);
-        pageConditions.put("keywords", keywords);
-        return Json.success(categoryBusiness.queryCategoryPage(pageConditions));
+    @GET("/tree")
+    public Map tree(Long pid) {
+        return Json.success(categoryBusiness.queryCategoryTree(pid));
     }
 
     /**

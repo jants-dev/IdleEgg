@@ -12,7 +12,7 @@ import cn.jants.core.startup.JTomcat;
  * @version 1.0
  */
 @Application
-@PropertyConfiguration
+@PropertyConfiguration(domain = "*")
 @EnableSQLMapPlugin(value = "team/ants/egg/mapper")
 public class IdleEggApplication {
 

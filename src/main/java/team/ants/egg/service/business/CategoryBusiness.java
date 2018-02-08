@@ -2,11 +2,10 @@ package team.ants.egg.service.business;
 
 import cn.jants.common.annotation.service.Autowired;
 import cn.jants.common.annotation.service.Service;
+import cn.jants.common.bean.JsonMap;
 import cn.jants.common.bean.Page;
 import cn.jants.common.bean.PageConditions;
 import cn.jants.plugin.sqlmap.Paging;
-import team.ants.egg.entity.Category;
-import team.ants.egg.mapper.CategoryMapper;
 import team.ants.egg.entity.Category;
 import team.ants.egg.mapper.CategoryMapper;
 
@@ -33,6 +32,20 @@ public class CategoryBusiness {
         Paging.startPage(pageConditions.getPageNum(), pageConditions.getPageSize());
         List<Category> categories = categoryMapper.selectList(pageConditions.getConditions());
         return new Page(categories);
+    }
+
+    /**
+     * 查询栏目列表
+     *
+     * @return
+     */
+    public List<Category> queryCategoryList(JsonMap params) {
+        List<Category> categories = categoryMapper.selectList(params);
+        return categories;
+    }
+
+    public JsonMap queryCategoryTree(Long pid){
+        return null;
     }
 
     /**

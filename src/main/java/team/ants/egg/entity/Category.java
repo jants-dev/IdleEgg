@@ -32,9 +32,14 @@ public class Category implements Serializable {
     private Integer level;
 
     /**
-     * 栏目图
+     * 手机Icon分类图
      */
-    private String icon;
+    private String appIcon;
+
+    /**
+     * PcIcon分类图
+     */
+    private String webIcon;
 
     /**
      * 连接URL
@@ -103,15 +108,21 @@ public class Category implements Serializable {
         this.level = level;
     }
 
-
-    public String getIcon() {
-        return icon;
+    public String getAppIcon() {
+        return appIcon;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setAppIcon(String appIcon) {
+        this.appIcon = appIcon;
     }
 
+    public String getWebIcon() {
+        return webIcon;
+    }
+
+    public void setWebIcon(String webIcon) {
+        this.webIcon = webIcon;
+    }
 
     public String getLinkUrl() {
         return linkUrl;
