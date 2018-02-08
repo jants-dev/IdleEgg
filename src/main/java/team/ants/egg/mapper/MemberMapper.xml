@@ -3,7 +3,7 @@
 <!-- 用户-->
 <mapper namespace="MemberMapper" >
 
-    <resultType id="member" type="com.acxy.idleegg.entity.Member" />
+    <resultType id="member" type="team.ants.egg.entity.Member" />
 
 
     <!--数据和实体的对应映射-->

@@ -1,12 +1,14 @@
-package com.acxy.idleegg.business;
+package team.ants.egg.service.business;
 
 import cn.jants.common.annotation.service.Autowired;
 import cn.jants.common.annotation.service.Service;
 import cn.jants.common.bean.Page;
 import cn.jants.common.bean.PageConditions;
 import cn.jants.plugin.sqlmap.Paging;
-import com.acxy.idleegg.entity.Category;
-import com.acxy.idleegg.mapper.CategoryMapper;
+import team.ants.egg.entity.Category;
+import team.ants.egg.mapper.CategoryMapper;
+import team.ants.egg.entity.Category;
+import team.ants.egg.mapper.CategoryMapper;
 
 import java.util.List;
 

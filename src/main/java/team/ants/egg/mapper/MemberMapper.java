@@ -1,8 +1,8 @@
-package com.acxy.idleegg.mapper;
+package team.ants.egg.mapper;
 
 
 import cn.jants.plugin.sqlmap.annotation.Mapper;
-import com.acxy.idleegg.entity.Member;
+import team.ants.egg.entity.Member;
 
 import java.util.List;
 

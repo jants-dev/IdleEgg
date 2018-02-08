@@ -1,11 +1,11 @@
-package com.acxy.idleegg.controller;
+package team.ants.egg.controller.api;
 
 import cn.jants.common.annotation.action.*;
 import cn.jants.common.annotation.service.Autowired;
 import cn.jants.common.bean.PageConditions;
 import cn.jants.restful.render.Json;
-import com.acxy.idleegg.business.MemberBusiness;
-import com.acxy.idleegg.entity.Member;
+import team.ants.egg.service.business.MemberBusiness;
+import team.ants.egg.entity.Member;
 
 import java.util.Map;
 
@@ -16,7 +16,7 @@ import java.util.Map;
  * @version 1.0
  */
 @Controller("member")
-public class MemberController {
+public class MemberApi {
 
     @Autowired
     private MemberBusiness memberBusiness;

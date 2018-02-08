@@ -1,4 +1,4 @@
-package com.acxy.idleegg.controller;
+package team.ants.egg.controller.api;
 
 import cn.jants.common.annotation.action.Controller;
 
@@ -9,5 +9,5 @@ import cn.jants.common.annotation.action.Controller;
  * @version 1.0
  */
 @Controller("comment")
-public class CommentController {
+public class CommentApi {
 }

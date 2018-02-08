@@ -3,7 +3,7 @@
 <!-- 栏目分类-->
 <mapper namespace="CategoryMapper" >
 
-    <resultType id="category" type="com.acxy.idleegg.entity.Category" />
+    <resultType id="category" type="team.ants.egg.entity.Category" />
    
     <!--数据和实体的对应映射-->
     <sql id="Base_Column_List" >

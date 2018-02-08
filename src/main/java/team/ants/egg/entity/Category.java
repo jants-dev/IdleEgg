@@ -1,4 +1,4 @@
-package com.acxy.idleegg.entity;
+package team.ants.egg.entity;
 
 
 import java.io.Serializable;

@@ -1,11 +1,9 @@
-package com.acxy.idleegg;
+package team.ants.egg;
 
 import cn.jants.common.annotation.boot.PropertyConfiguration;
 import cn.jants.common.annotation.plugin.EnableSQLMapPlugin;
 import cn.jants.common.annotation.service.Application;
 import cn.jants.core.startup.JTomcat;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * IdleEgg应用启动类
@@ -15,7 +13,7 @@ import java.lang.reflect.InvocationTargetException;
  */
 @Application
 @PropertyConfiguration
-@EnableSQLMapPlugin(value = "com/acxy/idleegg/mapper")
+@EnableSQLMapPlugin(value = "team/ants/egg/mapper")
 public class IdleEggApplication {
 
     public static void main(String[] args) {
