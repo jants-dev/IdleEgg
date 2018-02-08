@@ -35,11 +35,12 @@
                 and is_view= #{isView}
             </if>
         </where>
+        order by sort,cat_id asc
     </select>
 
 
     <!-- 根据主键ID查询一条记录-->
-    <select id="selectById" resultType="category">
+    <select id="selectById">
         select
         <include refid="Base_Column_List"/>
         from category where cat_id = #{catId}
@@ -129,9 +130,6 @@
     <update id="updateById">
         update category
         <set>
-            <if test="catId != null">
-                cat_id = #{catId},
-            </if>
             <if test="catName != null">
                 cat_name = #{catName},
             </if>

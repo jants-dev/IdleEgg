@@ -37,12 +37,11 @@ public class CategoryApi {
     /**
      * 获取菜单数
      *
-     * @param pid
      * @return
      */
     @GET("/tree")
-    public Map tree(Long pid) {
-        return Json.success(categoryBusiness.queryCategoryTree(pid));
+    public Map tree() {
+        return Json.success(categoryBusiness.queryCategoryTree());
     }
 
     /**
@@ -74,12 +73,11 @@ public class CategoryApi {
     /**
      * 修改栏目信息
      *
-     * @param catId
      * @param category
      * @return
      */
-    @PUT("/update/{catId}")
-    public Map update(@PathVariable String catId, Category category) {
+    @POST("/update")
+    public Map update(Category category) {
         Integer count = categoryBusiness.updateCategory(category);
         return Json.success(count);
     }
@@ -91,7 +89,7 @@ public class CategoryApi {
      * @param catId
      * @return
      */
-    @DELETE("/delete/{openId}")
+    @POST("/delete/{openId}")
     public Map delete(@PathVariable Long catId) {
         Integer count = categoryBusiness.deleteCategory(catId);
         return Json.success(count);
