@@ -89,7 +89,7 @@ public class CategoryApi {
      * @param catId
      * @return
      */
-    @POST("/delete/{openId}")
+    @POST("/delete/{catId}")
     public Map delete(@PathVariable Long catId) {
         Integer count = categoryBusiness.deleteCategory(catId);
         return Json.success(count);
