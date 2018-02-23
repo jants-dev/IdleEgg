@@ -56,16 +56,16 @@
             <if test="catName != null">
                 cat_name,
             </if>
-            <if test="parentId != null">
+            <if test="parentId != null and parentId !=0 and parentId!=''">
                 parent_id,
             </if>
             <if test="level != null">
                 level,
             </if>
-            <if test="mIcon != null">
+            <if test="appIcon != null">
                 m_icon,
             </if>
-            <if test="wIcon != null">
+            <if test="webIcon != null">
                 w_icon,
             </if>
             <if test="linkUrl != null">
@@ -91,17 +91,17 @@
             <if test="catName != null">
                 #{catName},
             </if>
-            <if test="parentId != null">
+            <if test="parentId != null and parentId !=0 and parentId!=''">
                 #{parentId},
             </if>
             <if test="level != null">
                 #{level},
             </if>
-            <if test="mIcon != null">
-                #{mIcon},
+            <if test="appIcon != null">
+                #{appIcon},
             </if>
-            <if test="wIcon != null">
-                #{wIcon},
+            <if test="webIcon != null">
+                #{webIcon},
             </if>
             <if test="linkUrl != null">
                 #{linkUrl},
@@ -139,11 +139,11 @@
             <if test="level != null">
                 level = #{level},
             </if>
-            <if test="mIcon != null">
-                m_icon = #{mIcon},
+            <if test="appIcon != null">
+                m_icon = #{appIcon},
             </if>
-            <if test="wIcon != null">
-                w_icon = #{wIcon},
+            <if test="webIcon != null">
+                w_icon = #{webIcon},
             </if>
             <if test="linkUrl != null">
                 link_url = #{linkUrl},

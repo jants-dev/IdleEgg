@@ -5,8 +5,8 @@ import cn.jants.common.annotation.service.Service;
 import cn.jants.common.bean.JsonMap;
 import cn.jants.common.bean.Page;
 import cn.jants.common.bean.PageConditions;
-import cn.jants.common.utils.StrUtil;
 import cn.jants.plugin.sqlmap.Paging;
+import com.alibaba.fastjson.JSON;
 import team.ants.egg.entity.Category;
 import team.ants.egg.mapper.CategoryMapper;
 
@@ -46,34 +46,22 @@ public class CategoryBusiness {
         return categories;
     }
 
-    public List<JsonMap> queryCategoryTree(){
-        JsonMap params = JsonMap.newJsonMap();
-        params.put("parentId", 0);
+    public List<JsonMap> queryCategoryTree() {
         List<JsonMap> result = new ArrayList<>();
-        iterTree(params, result);
-        return result;
-    }
-
-    private void iterTree(JsonMap params, List<JsonMap> result){
-        List<Category> categories = categoryMapper.selectList(params);
+        List<Category> categories = categoryMapper.selectList(null);
         //迭代分类
-        for(Category category: categories){
+        for (Category category : categories) {
             JsonMap map = JsonMap.newJsonMap();
             Long id = category.getCatId();
             map.put("id", id);
             map.put("name", category.getCatName());
-            Long catId = category.getCatId();
-            if(category.getParentId() == null){
-                map.put("isParent", true);
-                map.put("children", new ArrayList<>());
-            }else{
-                map.put("isParent", false);
-                params.put("parentId", catId);
-                iterTree(params, result);
-            }
+            Long pId = category.getParentId();
+            map.put("pId", pId);
             result.add(map);
         }
+        return result;
     }
+
 
     /**
      * 查询栏目信息
