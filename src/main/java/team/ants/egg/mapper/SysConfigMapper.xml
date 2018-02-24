@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--<!DOCTYPE mapper PUBLIC "ANTS" "http://doc.jants.cn/dtd/ants-mapper.dtd" >-->
+<!-- 配置-->
+<mapper namespace="SysConfigMapper" >
+
+    <!-- 根据名称查询键值 -->
+    <select id="selectByKey">
+        select val from sys_config where `key` = #{key}
+    </select>
+
+    <!-- 据key修改值内容 -->
+    <update id="updateByKey">
+        update sys_config set val = #{val} where `key` = #{key}
+    </update>
+</mapper>

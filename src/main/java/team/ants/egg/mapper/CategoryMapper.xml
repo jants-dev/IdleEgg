@@ -16,6 +16,7 @@
         link_url as linkUrl,
         sort as sort,
         hits as hits,
+        type as type,
         description as description,
         is_view as isView
     </sql>
@@ -77,6 +78,9 @@
             <if test="hits != null">
                 hits,
             </if>
+            <if test="type != null">
+                type,
+            </if>
             <if test="description != null">
                 description,
             </if>
@@ -112,6 +116,9 @@
             <if test="hits != null">
                 #{hits},
             </if>
+            <if test="type != null">
+                #{type},
+            </if>
             <if test="description != null">
                 #{description},
             </if>
@@ -133,7 +140,10 @@
             <if test="catName != null">
                 cat_name = #{catName},
             </if>
-            <if test="parentId != null">
+            <if test="parentId == 0">
+                parent_id = NULL,
+            </if>
+            <if test="parentId != null and parentId != 0">
                 parent_id = #{parentId},
             </if>
             <if test="level != null">
@@ -153,6 +163,9 @@
             </if>
             <if test="hits != null">
                 hits = #{hits},
+            </if>
+            <if test="type != null">
+                type = #{type},
             </if>
             <if test="description != null">
                 description = #{description},

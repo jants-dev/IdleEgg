@@ -57,6 +57,11 @@ public class Category implements Serializable {
     private Long hits;
 
     /**
+     * 栏目类型 0/商城
+     */
+    private Integer type;
+
+    /**
      * SEO描述
      */
     private String description;
@@ -150,6 +155,13 @@ public class Category implements Serializable {
         this.hits = hits;
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
     public String getDescription() {
         return description;
