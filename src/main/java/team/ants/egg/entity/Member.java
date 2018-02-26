@@ -1,7 +1,10 @@
 package team.ants.egg.entity;
 
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 用户(member)
@@ -57,6 +60,32 @@ public class Member implements Serializable {
     private String birthday;
 
     /**
+     * 第三方授权ID
+     */
+    private String thirdId;
+
+    /**
+     * 授权类型 0/微信 1/扣扣 2/微博
+     */
+    private Integer thirdType;
+
+    /**
+     * 登录次数
+     */
+    private Integer loginCount;
+
+    /**
+     * 上次登录IP
+     */
+    private String lastLoginIp;
+
+    /**
+     * 上次登录时间
+     */
+    @JSONField(format = "yyyy-MM-dd HH:mm")
+    private Date lastLoginTime;
+
+    /**
      * 会员是否锁定:0/正常 1/锁定
      */
     private Integer isLock;
@@ -69,7 +98,7 @@ public class Member implements Serializable {
     /**
      * 注册日期
      */
-    private java.util.Date createTime;
+    private Date createTime;
 
     public Member() {
     }
@@ -167,6 +196,45 @@ public class Member implements Serializable {
         this.isLock = isLock;
     }
 
+    public String getThirdId() {
+        return thirdId;
+    }
+
+    public void setThirdId(String thirdId) {
+        this.thirdId = thirdId;
+    }
+
+    public Integer getThirdType() {
+        return thirdType;
+    }
+
+    public void setThirdType(Integer thirdType) {
+        this.thirdType = thirdType;
+    }
+
+    public Integer getLoginCount() {
+        return loginCount;
+    }
+
+    public void setLoginCount(Integer loginCount) {
+        this.loginCount = loginCount;
+    }
+
+    public String getLastLoginIp() {
+        return lastLoginIp;
+    }
+
+    public void setLastLoginIp(String lastLoginIp) {
+        this.lastLoginIp = lastLoginIp;
+    }
+
+    public Date getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
 
     public Integer getType() {
         return type;
@@ -177,11 +245,11 @@ public class Member implements Serializable {
     }
 
 
-    public java.util.Date getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(java.util.Date createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
