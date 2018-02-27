@@ -4,8 +4,8 @@ import cn.jants.common.annotation.action.*;
 import cn.jants.common.annotation.service.Autowired;
 import cn.jants.common.bean.PageConditions;
 import cn.jants.restful.render.Json;
-import team.ants.egg.service.business.MemberBusiness;
 import team.ants.egg.entity.Member;
+import team.ants.egg.service.business.MemberBusiness;
 
 import java.util.Map;
 
@@ -67,7 +67,7 @@ public class MemberApi {
      * @param member
      * @return
      */
-    @PUT("/update/{openId}")
+    @POST("/update/{openId}")
     public Map update(@PathVariable String openId, Member member) {
         member.setOpenId(openId);
         Integer count = memberBusiness.updateMember(member);
@@ -81,7 +81,7 @@ public class MemberApi {
      * @param openId
      * @return
      */
-    @DELETE("/delete/{openId}")
+    @POST("/delete/{openId}")
     public Map delete(@PathVariable String openId) {
         Integer count = memberBusiness.deleteMember(openId);
         return Json.success(count);
