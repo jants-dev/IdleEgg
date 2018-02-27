@@ -48,7 +48,7 @@ public class CategoryBusiness {
 
     public List<JsonMap> queryCategoryTree() {
         List<JsonMap> result = new ArrayList<>();
-        List<Category> categories = categoryMapper.selectList(JsonMap.newJsonMap());
+        List<Category> categories = categoryMapper.selectList(null);
         //迭代分类
         for (Category category : categories) {
             JsonMap map = JsonMap.newJsonMap();
