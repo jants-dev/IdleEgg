@@ -4,11 +4,13 @@ import cn.jants.common.annotation.action.Controller;
 import cn.jants.common.annotation.action.POST;
 import cn.jants.common.annotation.action.Param;
 import cn.jants.common.annotation.service.Autowired;
+import cn.jants.common.bean.JsonMap;
 import cn.jants.common.utils.StrUtil;
 import cn.jants.plugin.oss.AliOssTpl;
 import cn.jants.plugin.oss.OssResult;
 import cn.jants.plugin.tool.AliOssTool;
 import cn.jants.restful.render.Json;
+import team.ants.egg.service.system.SysConfigService;
 
 import javax.servlet.http.Part;
 import java.io.IOException;
@@ -23,6 +25,9 @@ import java.util.UUID;
  */
 @Controller("upload")
 public class UploadController {
+
+    @Autowired
+    private SysConfigService sysConfigService;
 
     /**
      * 上传文件到OSS阿里云服务
@@ -47,7 +52,11 @@ public class UploadController {
                 fileName = UUID.randomUUID() + fileName.substring(fileName.lastIndexOf("."), fileName.length());
             }
             InputStream inputStream = file.getInputStream();
-            OssResult ossResult = AliOssTool.getAliOss().uploadStream2OSS(inputStream, fileName, StrUtil.joinLastSuffix(dir, "/"));
+            JsonMap aliOss = sysConfigService.getConfig("ali_oss");
+            OssResult ossResult = AliOssTool.getAliOss(aliOss.getStr("ossUrl")
+                    , aliOss.getStr("ossKeyId")
+                    , aliOss.getStr("ossKeySecret"))
+                    .uploadStream2OSS(inputStream, fileName, StrUtil.joinLastSuffix(dir, "/"));
             if (ossResult.isOk()) {
                 list.add(ossResult.getUrl());
             }

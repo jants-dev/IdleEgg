@@ -1,4 +1,4 @@
-package team.ants.egg.controller.api;
+package team.ants.egg.controller.admin;
 
 import cn.jants.common.annotation.action.*;
 import cn.jants.common.annotation.service.Autowired;
@@ -16,7 +16,7 @@ import java.util.Map;
  * @version 1.0
  */
 @Controller("member")
-public class MemberApi {
+public class MemberController {
 
     @Autowired
     private MemberBusiness memberBusiness;

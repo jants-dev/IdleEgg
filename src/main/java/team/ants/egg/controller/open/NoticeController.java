@@ -1,4 +1,4 @@
-package team.ants.egg.controller.api;
+package team.ants.egg.controller.open;
 
 import cn.jants.common.annotation.action.Controller;
 
@@ -9,5 +9,5 @@ import cn.jants.common.annotation.action.Controller;
  * @version 1.0
  */
 @Controller("notice")
-public class NoticeApi {
+public class NoticeController {
 }

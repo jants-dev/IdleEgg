@@ -1,6 +1,9 @@
-package team.ants.egg.controller.api;
+package team.ants.egg.controller.admin;
 
-import cn.jants.common.annotation.action.*;
+import cn.jants.common.annotation.action.Controller;
+import cn.jants.common.annotation.action.GET;
+import cn.jants.common.annotation.action.POST;
+import cn.jants.common.annotation.action.PathVariable;
 import cn.jants.common.annotation.service.Autowired;
 import cn.jants.common.bean.JsonMap;
 import cn.jants.restful.render.Json;
@@ -16,7 +19,7 @@ import java.util.Map;
  * @version 1.0
  */
 @Controller("category")
-public class CategoryApi {
+public class CategoryController {
 
     @Autowired
     private CategoryBusiness categoryBusiness;
