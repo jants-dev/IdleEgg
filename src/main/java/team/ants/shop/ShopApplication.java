@@ -10,13 +10,13 @@ import cn.jants.core.startup.JTomcat;
 import team.ants.shop.handler.AuthHandler;
 
 /**
- * IdleEgg应用启动类
+ * Shop应用启动类
  *
  * @author MrShun
  * @version 1.0
  */
 @Application
-@PropertyConfiguration(domain = "*")
+@PropertyConfiguration
 @EnableSQLMapPlugin(value = "team/ants/shop/mapper")
 public class ShopApplication extends AppConfiguration{
 
@@ -28,8 +28,8 @@ public class ShopApplication extends AppConfiguration{
 
     public static void main(String[] args) {
         // 模拟输入参数
-        args = new String[]{"80", "admin-api"};
-        int port = 80;
+        args = new String[]{"88", "admin-api"};
+        int port = 88;
         String contextPath = "";
         if(args.length == 1){
             port = Integer.valueOf(args[0]);

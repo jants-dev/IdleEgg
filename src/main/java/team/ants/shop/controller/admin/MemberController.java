@@ -3,9 +3,11 @@ package team.ants.shop.controller.admin;
 import cn.jants.common.annotation.action.*;
 import cn.jants.common.annotation.service.Autowired;
 import cn.jants.common.bean.PageConditions;
+import cn.jants.common.utils.StrUtil;
 import cn.jants.restful.render.Json;
 import team.ants.shop.entity.Member;
-import team.ants.shop.service.business.MemberBusiness;
+import team.ants.shop.service.MemberService;
+import team.ants.shop.service.impl.MemberServiceImpl;
 
 import java.util.Map;
 
@@ -19,7 +21,7 @@ import java.util.Map;
 public class MemberController {
 
     @Autowired
-    private MemberBusiness memberBusiness;
+    private MemberService memberService;
 
     /**
      * 查询会员分页
@@ -29,20 +31,23 @@ public class MemberController {
      * @return
      */
     @GET("/page")
-    public Map page(@Param Integer index, @Param Integer size) {
+    public Map page(@Param Integer index, @Param Integer size, String keywords) {
         PageConditions pageConditions = new PageConditions(index, size);
-        return Json.success(memberBusiness.queryMemberPage(pageConditions));
+        if(StrUtil.notBlank(keywords)) {
+            pageConditions.put("keywords", keywords);
+        }
+        return Json.success(memberService.queryPage(pageConditions));
     }
 
     /**
      * 查询会员信息
      *
-     * @param openId
+     * @param id
      * @return
      */
-    @GET("/query/{openId}")
-    public Map query(@PathVariable String openId) {
-        Member member = memberBusiness.queryMember(openId);
+    @GET("/query/{id}")
+    public Map query(@PathVariable String id) {
+        Member member = memberService.queryById(id);
         return Json.success(member);
     }
 
@@ -55,7 +60,7 @@ public class MemberController {
      */
     @POST("/add")
     public Map add(Member member) {
-        Long returnKey = memberBusiness.saveMember(member);
+        Long returnKey = memberService.save(member);
         return Json.success(returnKey);
     }
 
@@ -63,14 +68,14 @@ public class MemberController {
     /**
      * 修改会员信息
      *
-     * @param openId
+     * @param id
      * @param member
      * @return
      */
-    @POST("/update/{openId}")
-    public Map update(@PathVariable String openId, Member member) {
-        member.setOpenId(openId);
-        Integer count = memberBusiness.updateMember(member);
+    @POST("/update/{id}")
+    public Map update(@PathVariable Long id, Member member) {
+        member.setId(id);
+        Integer count = memberService.updateById(member);
         return Json.success(count);
     }
 
@@ -78,12 +83,12 @@ public class MemberController {
     /**
      * 删除会员
      *
-     * @param openId
+     * @param id
      * @return
      */
-    @POST("/delete/{openId}")
-    public Map delete(@PathVariable String openId) {
-        Integer count = memberBusiness.deleteMember(openId);
+    @POST("/delete/{id}")
+    public Map delete(@PathVariable String id) {
+        Integer count = memberService.deleteById(id);
         return Json.success(count);
     }
 }

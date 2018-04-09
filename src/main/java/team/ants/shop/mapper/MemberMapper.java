@@ -22,12 +22,12 @@ public interface MemberMapper {
     List<Member> selectList();
 
     /**
-     * 根据openId查询用户信息
+     * 根据id查询用户信息
      *
-     * @param openId 用户openId
+     * @param id 用户id
      * @return
      */
-    Member selectByOpenId(String openId);
+    Member selectById(String id);
 
 
     /**
@@ -44,13 +44,13 @@ public interface MemberMapper {
      * @param member 实体对象
      * @return
      */
-    Integer updateByOpenId(Member member);
+    Integer updateById(Member member);
 
     /**
      * 删除会员信
      *
-     * @param openId
+     * @param id
      * @return
      */
-    Integer deleteByOpenId(String openId);
+    Integer deleteById(String id);
 }

@@ -16,7 +16,8 @@
         link_url as linkUrl,
         sort as sort,
         hits as hits,
-        type as type,
+        model as model,
+        is_sys as isSys,
         description as description,
         is_view as isView
     </sql>
@@ -78,8 +79,8 @@
             <if test="hits != null">
                 hits,
             </if>
-            <if test="type != null">
-                type,
+            <if test="model != null">
+                model,
             </if>
             <if test="description != null">
                 description,
@@ -116,8 +117,8 @@
             <if test="hits != null">
                 #{hits},
             </if>
-            <if test="type != null">
-                #{type},
+            <if test="model != null">
+                #{model},
             </if>
             <if test="description != null">
                 #{description},
@@ -130,7 +131,7 @@
 
     <!-- 根据主键Id删除数据-->
     <delete id="deleteById">
-        delete from category where cat_id = #{catId}
+        delete from category where cat_id = #{catId} and is_sys = 0
     </delete>
 
     <!-- 据主键Id修改字段不为空的数据 -->
@@ -164,8 +165,8 @@
             <if test="hits != null">
                 hits = #{hits},
             </if>
-            <if test="type != null">
-                type = #{type},
+            <if test="model != null">
+                model = #{model},
             </if>
             <if test="description != null">
                 description = #{description},

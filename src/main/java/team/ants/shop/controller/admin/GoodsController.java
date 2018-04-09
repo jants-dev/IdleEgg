@@ -6,7 +6,7 @@ import cn.jants.common.annotation.action.Param;
 import cn.jants.common.annotation.service.Autowired;
 import cn.jants.common.bean.PageConditions;
 import cn.jants.restful.render.Json;
-import team.ants.shop.service.business.GoodsBusiness;
+import team.ants.shop.service.GoodsService;
 
 import java.util.Map;
 
@@ -19,7 +19,7 @@ import java.util.Map;
 public class GoodsController {
 
     @Autowired
-    private GoodsBusiness goodsBusiness;
+    private GoodsService goodsService;
 
     /**
      * 查询会员分页
@@ -31,6 +31,6 @@ public class GoodsController {
     @GET("/page")
     public Map page(@Param Integer index, @Param Integer size) {
         PageConditions pageConditions = new PageConditions(index, size);
-        return Json.success(goodsBusiness.queryGoodsPage(pageConditions));
+        return Json.success(goodsService.queryPage(pageConditions));
     }
 }

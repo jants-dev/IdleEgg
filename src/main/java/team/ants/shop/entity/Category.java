@@ -57,9 +57,14 @@ public class Category implements Serializable {
     private Long hits;
 
     /**
-     * 栏目类型 0/商城
+     * 栏目类型 0/商品 1/服务 2/招聘 3/帖子 4/资讯
      */
-    private Integer type;
+    private Integer model;
+
+    /**
+     * 0/不是 1/系统
+     */
+    private Integer isSys;
 
     /**
      * SEO描述
@@ -155,12 +160,20 @@ public class Category implements Serializable {
         this.hits = hits;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getModel() {
+        return model;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setModel(Integer model) {
+        this.model = model;
+    }
+
+    public Integer getIsSys() {
+        return isSys;
+    }
+
+    public void setIsSys(Integer isSys) {
+        this.isSys = isSys;
     }
 
     public String getDescription() {

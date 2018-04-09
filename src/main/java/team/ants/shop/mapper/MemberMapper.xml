@@ -8,6 +8,7 @@
 
     <!--数据和实体的对应映射-->
     <sql id="Base_Column_List">
+        id as id,
         open_id as openId,
         account as account,
         nick_name as nickName,
@@ -31,11 +32,16 @@
         select
         <include refid="Base_Column_List"/>
         from member
+        <where>
+            <if test="keywords != null">
+                nick_name like concat(concat('%', keywords), '%')
+            </if>
+        </where>
     </select>
 
     <!-- //TODO 多条件删除,自己扩充条件-->
-    <delete id="deleteByOpenId">
-        delete from member where open_id = #{openId}
+    <delete id="deleteId">
+        delete from member where id = #{id}
     </delete>
 
 
@@ -163,7 +169,7 @@
     </delete>
 
     <!-- 据主键Id修改字段不为空的数据 -->
-    <update id="updateByOpenId">
+    <update id="updateById">
         update member
         <set>
             <if test="account != null">
@@ -212,12 +218,6 @@
                 create_time = #{createTime},
             </if>
         </set>
-        where open_id = #{openId}
+        where id = #{id}
     </update>
-
-    <select id="selectByOpenId">
-        select
-        <include refid="Base_Column_List"/>
-        from member where open_id = #{openId} limit 1
-    </select>
 </mapper>

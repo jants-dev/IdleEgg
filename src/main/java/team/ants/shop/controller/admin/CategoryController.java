@@ -8,7 +8,7 @@ import cn.jants.common.annotation.service.Autowired;
 import cn.jants.common.bean.JsonMap;
 import cn.jants.restful.render.Json;
 import team.ants.shop.entity.Category;
-import team.ants.shop.service.business.CategoryBusiness;
+import team.ants.shop.service.CategoryService;
 
 import java.util.Map;
 
@@ -22,7 +22,7 @@ import java.util.Map;
 public class CategoryController {
 
     @Autowired
-    private CategoryBusiness categoryBusiness;
+    private CategoryService categoryService;
 
     /**
      * 查询栏目列表
@@ -34,7 +34,7 @@ public class CategoryController {
     public Map list(Long pid) {
         JsonMap params = JsonMap.newJsonMap();
         params.put("parentId", pid);
-        return Json.success(categoryBusiness.queryCategoryList(params));
+        return Json.success(categoryService.queryList(params));
     }
 
     /**
@@ -44,7 +44,7 @@ public class CategoryController {
      */
     @GET("/tree")
     public Map tree() {
-        return Json.success(categoryBusiness.queryCategoryTree());
+        return Json.success(categoryService.queryTree());
     }
 
     /**
@@ -55,7 +55,7 @@ public class CategoryController {
      */
     @GET("/query/{catId}")
     public Map query(@PathVariable Long catId) {
-        Category category = categoryBusiness.queryCategory(catId);
+        Category category = categoryService.queryById(catId);
         return Json.success(category);
     }
 
@@ -68,7 +68,7 @@ public class CategoryController {
      */
     @POST("/create")
     public Map create(Category category) {
-        Long returnKey = categoryBusiness.saveCategory(category);
+        Long returnKey = categoryService.save(category);
         return Json.success(returnKey);
     }
 
@@ -81,7 +81,7 @@ public class CategoryController {
      */
     @POST("/update")
     public Map update(Category category) {
-        Integer count = categoryBusiness.updateCategory(category);
+        Integer count = categoryService.updateById(category);
         return Json.success(count);
     }
 
@@ -94,7 +94,7 @@ public class CategoryController {
      */
     @POST("/delete/{catId}")
     public Map delete(@PathVariable Long catId) {
-        Integer count = categoryBusiness.deleteCategory(catId);
+        Integer count = categoryService.deleteById(catId);
         return Json.success(count);
     }
 }
